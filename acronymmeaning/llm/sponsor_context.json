@@ -1,0 +1,33 @@
+{
+    "sponsor_mappings": [
+        {
+            "sponsor_id": "example_sponsor",
+            "acronyms": [
+                {
+                    "acronym": "ABC",
+                    "context": "Example Business Corporation",
+                    "relevance_score": 0.95,
+                    "usage_contexts": [
+                        "business operations",
+                        "industry standards"
+                    ]
+                }
+            ],
+            "industry_terms": [
+                {
+                    "term": "term1",
+                    "definition": "Definition of term1",
+                    "sponsor_specific_context": "How this term relates to the sponsor"
+                }
+            ],
+            "training_priority": 1,
+            "last_updated": "2024-05-02"
+        }
+    ],
+    "metadata": {
+        "version": "1.0",
+        "last_updated": "2024-05-02",
+        "total_sponsors": 1,
+        "total_acronyms": 1
+    }
+} 

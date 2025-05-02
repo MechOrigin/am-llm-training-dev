@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Sponsors - AcronymMeaning.com</title>
+    <link rel="stylesheet" href="/static/css/sponsors.css">
+</head>
+<body>
+    <header>
+        <h1>Our Sponsors</h1>
+        <p>Supporting our mission to make acronyms accessible to everyone</p>
+    </header>
+
+    <main>
+        <section class="sponsors-grid">
+            {% for sponsor in sponsors %}
+            <div class="sponsor-card">
+                <div class="sponsor-logo">
+                    <img src="{{ sponsor.logo_url }}" alt="{{ sponsor.company_name }} logo">
+                </div>
+                <div class="sponsor-info">
+                    <h2>{{ sponsor.company_name }}</h2>
+                    <p class="description">{{ sponsor.description }}</p>
+                    <div class="industry-focus">
+                        <h3>Industry Focus</h3>
+                        <ul>
+                            {% for industry in sponsor.industry_focus %}
+                            <li>{{ industry }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="relevant-acronyms">
+                        <h3>Relevant Acronyms</h3>
+                        <ul>
+                            {% for acronym in sponsor.relevant_acronyms %}
+                            <li>
+                                <strong>{{ acronym.acronym }}</strong>: {{ acronym.meaning }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="contact-info">
+                        <a href="{{ sponsor.contact_information.website }}" target="_blank" class="website-link">
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <p>Interested in becoming a sponsor? <a href="/contact">Contact us</a></p>
+    </footer>
+</body>
+</html> 

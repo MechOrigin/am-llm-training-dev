@@ -1,0 +1,36 @@
+{
+    "company_name": "Example Sponsor",
+    "description": "A brief description of the sponsor's business and mission",
+    "key_products_services": [
+        "Product 1",
+        "Service 1",
+        "Product 2"
+    ],
+    "relevant_acronyms": [
+        {
+            "acronym": "ABC",
+            "meaning": "Example Business Corporation",
+            "context": "How this acronym relates to the sponsor's business"
+        }
+    ],
+    "industry_focus": [
+        "Industry 1",
+        "Industry 2"
+    ],
+    "contact_information": {
+        "website": "https://example.com",
+        "email": "contact@example.com",
+        "phone": "+1-XXX-XXX-XXXX"
+    },
+    "llm_training_context": {
+        "key_phrases": [
+            "phrase1",
+            "phrase2"
+        ],
+        "industry_terms": [
+            "term1",
+            "term2"
+        ],
+        "brand_voice": "Description of the sponsor's brand voice and tone"
+    }
+} 
