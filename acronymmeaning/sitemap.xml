@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://acronymmeaning.com/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
@@ -11,7 +11,14 @@
   <url>
     <loc>https://acronymmeaning.com/crm</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- BBQ -->
+  <url>
+    <loc>https://acronymmeaning.com/bbq</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- API Documentation -->
@@ -25,7 +32,21 @@
   <url>
     <loc>https://acronymmeaning.com/about</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://acronymmeaning.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Sponsors -->
+  <url>
+    <loc>https://acronymmeaning.com/sponsors</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- Legal Information -->
