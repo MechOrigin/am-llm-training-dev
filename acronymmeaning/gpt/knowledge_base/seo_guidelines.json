@@ -1,0 +1,39 @@
+{
+    "seo_guidelines": {
+        "content_structure": {
+            "title": "Use descriptive, keyword-rich titles",
+            "meta_description": "Write compelling meta descriptions with target keywords",
+            "headings": "Use proper heading hierarchy (H1, H2, H3)",
+            "content_length": "Aim for comprehensive content (1000+ words for main pages)",
+            "keyword_density": "Maintain natural keyword usage (1-2% density)"
+        },
+        "technical_seo": {
+            "page_speed": "Optimize for fast loading times",
+            "mobile_friendly": "Ensure responsive design",
+            "structured_data": "Implement schema markup",
+            "url_structure": "Use clean, descriptive URLs",
+            "internal_linking": "Create relevant internal links"
+        },
+        "content_optimization": {
+            "keyword_research": "Focus on long-tail keywords",
+            "content_freshness": "Regularly update content",
+            "user_intent": "Match content to search intent",
+            "readability": "Maintain high readability scores",
+            "multimedia": "Include relevant images and videos"
+        },
+        "local_seo": {
+            "google_my_business": "Maintain accurate business listings",
+            "local_keywords": "Include location-specific terms",
+            "reviews": "Encourage and manage customer reviews",
+            "citations": "Ensure consistent NAP (Name, Address, Phone) information",
+            "local_content": "Create location-specific content"
+        },
+        "monitoring": {
+            "analytics": "Track key performance metrics",
+            "rank_tracking": "Monitor keyword rankings",
+            "competitor_analysis": "Analyze competitor strategies",
+            "backlink_monitoring": "Track backlink profile",
+            "content_performance": "Measure content engagement"
+        }
+    }
+} 
