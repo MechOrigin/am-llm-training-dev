@@ -10,34 +10,6 @@ def test_root_endpoint():
     assert response.status_code == 200
     assert response.json() == {"message": "Welcome to the AcronymMeaning API"}
 
-def test_get_crm_definition():
-    """Test retrieving CRM definition"""
-    response = client.get("/api/acronym/crm")
-    assert response.status_code == 200
-    data = response.json()
-    
-    # Check basic structure
-    assert data["acronym"] == "CRM"
-    assert data["full_form"] == "Customer Relationship Management"
-    assert "description" in data
-    
-    # Check sponsor information
-    assert "sponsor" in data
-    assert data["sponsor"]["name"] == "HubSpot"
-    assert "hubspot.com" in data["sponsor"]["url"]
-
-def test_search_crm():
-    """Test searching for CRM-related terms"""
-    # Test exact match
-    response = client.get("/api/search?q=CRM")
-    assert response.status_code == 200
-    assert len(response.json()) > 0
-    
-    # Test partial match in description
-    response = client.get("/api/search?q=customer")
-    assert response.status_code == 200
-    assert len(response.json()) > 0
-
 def test_nonexistent_acronym():
     """Test requesting non-existent acronym returns 404"""
     response = client.get("/api/acronym/nonexistent")

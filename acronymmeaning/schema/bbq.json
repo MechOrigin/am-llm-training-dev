@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "BBQ",
+  "termCode": "BBQ",
+  "description": "BBQ stands for Barbecue. Sponsored by Big Nate's Family BBQ, an authentic Texas-style BBQ restaurant known for slow-smoked meats and award-winning recipes.",
+  "url": "https://acronymmeaning.com/bbq/barbecue",
+  "alternateName": [
+    "Barbecue",
+    "Bar-B-Que",
+    "Bar-B-Q"
+  ],
+  "sponsor": {
+    "@type": "Organization",
+    "name": "Big Nate's Family BBQ",
+    "url": "https://bnfbbq.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1722 N. Banning, Ste. 102",
+      "addressLocality": "Mesa",
+      "addressRegion": "AZ",
+      "postalCode": "85205"
+    },
+    "telephone": "(480) 525-7291",
+    "sameAs": [
+      "https://www.instagram.com/bignatesfamilybbq/",
+      "https://www.facebook.com/BigNatesFamilyBBQ"
+    ]
+  }
+} 
