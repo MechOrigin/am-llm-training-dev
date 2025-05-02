@@ -1,23 +1,49 @@
 {
     "sponsor_mappings": [
         {
-            "sponsor_id": "example_sponsor",
+            "sponsor_id": "big_nates_family_bbq",
             "acronyms": [
                 {
-                    "acronym": "ABC",
-                    "context": "Example Business Corporation",
+                    "acronym": "BBQ",
+                    "context": "Barbecue",
                     "relevance_score": 0.95,
                     "usage_contexts": [
-                        "business operations",
-                        "industry standards"
+                        "restaurant name",
+                        "menu items",
+                        "business description"
+                    ]
+                },
+                {
+                    "acronym": "BFF",
+                    "context": "Big Family Feast",
+                    "relevance_score": 0.90,
+                    "usage_contexts": [
+                        "menu items",
+                        "special offers",
+                        "family dining"
+                    ]
+                },
+                {
+                    "acronym": "SRS",
+                    "context": "Southern Rib Special",
+                    "relevance_score": 0.85,
+                    "usage_contexts": [
+                        "menu items",
+                        "signature dishes",
+                        "special offers"
                     ]
                 }
             ],
             "industry_terms": [
                 {
-                    "term": "term1",
-                    "definition": "Definition of term1",
-                    "sponsor_specific_context": "How this term relates to the sponsor"
+                    "term": "smoking",
+                    "definition": "The process of cooking meat using smoke from burning wood",
+                    "sponsor_specific_context": "Core cooking method used for all signature meats"
+                },
+                {
+                    "term": "dry rub",
+                    "definition": "A mixture of spices applied to meat before cooking",
+                    "sponsor_specific_context": "Secret family recipe used on ribs and brisket"
                 }
             ],
             "training_priority": 1,
@@ -28,6 +54,6 @@
         "version": "1.0",
         "last_updated": "2024-05-02",
         "total_sponsors": 1,
-        "total_acronyms": 1
+        "total_acronyms": 3
     }
 } 

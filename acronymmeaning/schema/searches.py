@@ -8,8 +8,9 @@ class Search(Base):
     __tablename__ = "searches"
 
     id = Column(Integer, primary_key=True, index=True)
-    search_term = Column(String, index=True)
-    ip_address = Column(String)
+    query = Column(String, index=True)
+    acronym = Column(String, index=True)
     user_agent = Column(String)
-    search_results = Column(JSON)
+    ip_address = Column(String)
+    results = Column(JSON)  # Store search results for analysis
     created_at = Column(DateTime, default=datetime.utcnow) 

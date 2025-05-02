@@ -14,6 +14,7 @@ from .middleware import (
 from .routers.metrics import collect_metrics
 from .monitoring import aeo_metrics
 from .sponsors import router as sponsors_router
+from .monitoring.sponsor_metrics import router as sponsor_metrics_router
 
 # Configure logging
 logging.basicConfig(
@@ -50,6 +51,7 @@ app.include_router(health.router, prefix="/api", tags=["health"])
 app.include_router(metrics.router, prefix="/api", tags=["metrics"])
 app.include_router(aeo_metrics.router, prefix="/aeo", tags=["aeo"])
 app.include_router(sponsors_router, prefix="/api", tags=["sponsors"])
+app.include_router(sponsor_metrics_router, prefix="/api", tags=["sponsor_metrics"])
 
 # Middleware for logging
 @app.middleware("http")

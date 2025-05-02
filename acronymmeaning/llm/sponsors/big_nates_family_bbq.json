@@ -1,0 +1,59 @@
+{
+    "company_name": "Big Nate's Family BBQ",
+    "description": "A family-owned BBQ restaurant serving authentic Southern-style barbecue with a focus on quality meats, homemade sauces, and traditional sides. Known for their signature smoked meats and welcoming atmosphere.",
+    "key_products_services": [
+        "Smoked Brisket",
+        "Pulled Pork",
+        "Baby Back Ribs",
+        "Homemade BBQ Sauces",
+        "Traditional Southern Sides",
+        "Catering Services"
+    ],
+    "relevant_acronyms": [
+        {
+            "acronym": "BBQ",
+            "meaning": "Barbecue",
+            "context": "The core of Big Nate's business, representing their specialty in smoked and grilled meats"
+        },
+        {
+            "acronym": "BFF",
+            "meaning": "Big Family Feast",
+            "context": "Their signature family-style meal package"
+        },
+        {
+            "acronym": "SRS",
+            "meaning": "Southern Rib Special",
+            "context": "Their award-winning rib combination plate"
+        }
+    ],
+    "industry_focus": [
+        "Restaurant",
+        "Food Service",
+        "Catering",
+        "Southern Cuisine",
+        "BBQ and Grilling"
+    ],
+    "contact_information": {
+        "website": "https://bignatesbbq.com",
+        "email": "info@bignatesbbq.com",
+        "phone": "+1-XXX-XXX-XXXX",
+        "address": "123 BBQ Lane, Smoketown, USA"
+    },
+    "llm_training_context": {
+        "key_phrases": [
+            "authentic Southern BBQ",
+            "smoked meats",
+            "family-style dining",
+            "homemade sauces",
+            "traditional sides"
+        ],
+        "industry_terms": [
+            "smoking",
+            "dry rub",
+            "wet rub",
+            "low and slow",
+            "pit master"
+        ],
+        "brand_voice": "Friendly, family-oriented, and passionate about authentic Southern BBQ traditions"
+    }
+} 

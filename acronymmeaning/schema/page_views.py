@@ -1,14 +1,13 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-
-Base = declarative_base()
+from .base import Base
 
 class PageView(Base):
     __tablename__ = "page_views"
 
     id = Column(Integer, primary_key=True, index=True)
-    page_url = Column(String, index=True)
-    ip_address = Column(String)
+    page_type = Column(String, index=True)  # e.g., 'sponsor', 'acronym'
+    page_id = Column(String, index=True)    # e.g., sponsor_id or acronym
     user_agent = Column(String)
+    ip_address = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow) 
