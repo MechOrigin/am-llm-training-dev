@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "CRM",
+  "termCode": "CRM",
+  "description": "CRM stands for Customer Relationship Management. Sponsored by HubSpot, a leading provider of CRM software trusted by over 170,000 businesses worldwide.",
+  "url": "https://acronymmeaning.com/crm",
+  "alternateName": [
+    "Customer Relationship Management",
+    "Client Relationship Management",
+    "Customer Relationship Manager"
+  ],
+  "sponsor": {
+    "@type": "Organization",
+    "name": "HubSpot",
+    "url": "https://www.hubspot.com",
+    "description": "A leading provider of CRM software",
+    "sameAs": [
+      "https://twitter.com/HubSpot",
+      "https://www.linkedin.com/company/hubspot",
+      "https://github.com/HubSpot"
+    ]
+  },
+  "industry": "Business Software",
+  "relatedTerms": [
+    "Sales Automation",
+    "Marketing Automation",
+    "Customer Service",
+    "Lead Management"
+  ]
+} 

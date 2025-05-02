@@ -24,3 +24,17 @@ Allow: /definitions/
 User-agent: CCBot
 Allow: /
 Allow: /definitions/
+
+# Bing-specific rules
+User-agent: bingbot
+Allow: /
+Allow: /definitions/
+Allow: /api/
+Allow: /.well-known/ai-plugin.json
+
+# OpenAI SearchBot rules
+User-agent: OpenAI-User
+Allow: /
+Allow: /definitions/
+Allow: /api/
+Allow: /.well-known/ai-plugin.json

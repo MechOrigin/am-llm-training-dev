@@ -1,102 +1,106 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Optional, List
-import json
-import os
+import logging
+from datetime import datetime
+import time
+
+# Import routers
+from .routers import acronyms, conversational, health, metrics
+from .middleware import (
+    rate_limit_middleware,
+    validate_response_middleware,
+    version_middleware
+)
+from .routers.metrics import collect_metrics
+from .monitoring import aeo_metrics
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    filename='searchbot_access.log'
+)
+logger = logging.getLogger('searchbot_monitor')
 
 app = FastAPI(
     title="AcronymMeaning API",
-    description="API for retrieving sponsored acronym definitions",
+    description="API for retrieving structured acronym definitions with sponsorship information",
     version="1.0.0"
 )
 
-# Enable CORS
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-class Sponsor(BaseModel):
-    name: str
-    url: str
-    description: Optional[str] = None
+# Add custom middleware
+app.middleware("http")(version_middleware)
+app.middleware("http")(validate_response_middleware)
+app.middleware("http")(collect_metrics)
 
-class AcronymDefinition(BaseModel):
-    acronym: str
-    full_form: str
-    description: str
-    sponsor: Optional[Sponsor] = None
-    industry: Optional[str] = None
-    related_terms: Optional[List[str]] = None
+# Include routers
+app.include_router(acronyms.router, prefix="/api/acronym", tags=["acronyms"])
+app.include_router(conversational.router, prefix="/api/conversational", tags=["conversational"])
+app.include_router(health.router, prefix="/api", tags=["health"])
+app.include_router(metrics.router, prefix="/api", tags=["metrics"])
+app.include_router(aeo_metrics.router, prefix="/aeo", tags=["aeo"])
 
-# In-memory database for demo (replace with real DB in production)
-ACRONYMS = {
-    "crm": {
-        "acronym": "CRM",
-        "full_form": "Customer Relationship Management",
-        "description": "CRM stands for Customer Relationship Management. It refers to software platforms that help businesses manage customer relationships, sales pipelines, and marketing campaigns effectively.",
-        "sponsor": {
-            "name": "HubSpot",
-            "url": "https://www.hubspot.com",
-            "description": "HubSpot is a leading CRM platform trusted by over 170,000 businesses worldwide for its user-friendly interface and comprehensive feature set."
-        },
-        "industry": "Business Software",
-        "related_terms": ["Sales", "Marketing", "Customer Service"]
-    },
-    "bbq": {
-        "acronym": "BBQ",
-        "full_form": "Barbecue",
-        "description": "BBQ stands for Barbecue. It represents a traditional cooking method of smoking and grilling meats, known for bringing people together through authentic flavors and time-honored techniques.",
-        "sponsor": {
-            "name": "Big Nate's Family BBQ",
-            "url": "https://bnfbbq.com",
-            "description": "An authentic Texas-style BBQ restaurant in Mesa, AZ, known for slow-smoked meats and award-winning recipes"
-        },
-        "industry": "Food & Dining",
-        "related_terms": ["Smoking", "Grilling", "Texas-style BBQ", "Slow-cooking"]
-    }
-}
+# Middleware for logging
+@app.middleware("http")
+async def log_searchbot_access(request, call_next):
+    user_agent = request.headers.get("user-agent", "")
+    if "OpenAI-User" in user_agent:
+        logger.info(f"SearchBot access: {request.method} {request.url.path} - {datetime.now()}")
+    response = await call_next(request)
+    return response
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    """Middleware to log requests and track AEO metrics"""
+    start_time = time.time()
+    
+    # Log OpenAI SearchBot requests
+    user_agent = request.headers.get("user-agent", "").lower()
+    if "openai" in user_agent or "chatgpt" in user_agent:
+        logger.info(f"OpenAI SearchBot request: {request.method} {request.url.path}")
+    
+    response = await call_next(request)
+    
+    # Calculate response time
+    process_time = time.time() - start_time
+    
+    # Log AEO metrics for relevant endpoints
+    if request.url.path.startswith("/api/conversational"):
+        try:
+            # Extract query parameters
+            query = request.query_params.get("query", "")
+            acronym = request.url.path.split("/")[-1]
+            
+            # Log AEO query
+            aeo_metrics.log_aeo_query(
+                query=query,
+                source=user_agent,
+                response_type="conversational",
+                confidence=0.9,  # Default confidence
+                context_relevance=0.9  # Default context relevance
+            )
+        except Exception as e:
+            logger.error(f"Error logging AEO metrics: {e}")
+    
+    # Add response time to headers
+    response.headers["X-Process-Time"] = str(process_time)
+    
+    return response
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the AcronymMeaning API"}
-
-@app.get("/api/acronym/{acronym}")
-async def get_acronym(acronym: str):
-    acronym_lower = acronym.lower()
-    if acronym_lower not in ACRONYMS:
-        raise HTTPException(status_code=404, detail="Acronym not found")
-    return ACRONYMS[acronym_lower]
-
-@app.get("/api/search")
-async def search_acronyms(q: str):
-    """Search acronyms by term"""
-    results = []
-    q_lower = q.lower()
-    for acronym in ACRONYMS.values():
-        # Check main fields
-        if (q_lower in acronym["acronym"].lower() or 
-            q_lower in acronym["full_form"].lower() or 
-            q_lower in acronym["description"].lower()):
-            results.append(acronym)
-            continue
-            
-        # Check sponsor name and description
-        if acronym.get("sponsor"):
-            if (q_lower in acronym["sponsor"]["name"].lower() or
-                (acronym["sponsor"].get("description") and 
-                 q_lower in acronym["sponsor"]["description"].lower())):
-                results.append(acronym)
-                continue
-            
-        # Check related terms
-        if acronym.get("related_terms"):
-            if any(q_lower in term.lower() for term in acronym["related_terms"]):
-                results.append(acronym)
-                continue
-    
-    return results 
+    """Root endpoint"""
+    return {
+        "message": "Welcome to AcronymMeaning API",
+        "version": "1.0.0",
+        "documentation": "/docs"
+    } 
