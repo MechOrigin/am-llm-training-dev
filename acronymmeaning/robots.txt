@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Allow: /definitions/
+Allow: /api/
+Allow: /.well-known/ai-plugin.json
+
+# Sitemaps
+Sitemap: https://acronymmeaning.com/sitemap.xml
+
+# Special rules for AI crawlers
+User-agent: GPTBot
+Allow: /
+Allow: /definitions/
+Allow: /.well-known/ai-plugin.json
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /definitions/
+
+User-agent: Omgilibot
+Allow: /
+Allow: /definitions/
+
+User-agent: CCBot
+Allow: /
+Allow: /definitions/

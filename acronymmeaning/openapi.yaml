@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: AcronymMeaning API
+  description: API for retrieving sponsored acronym definitions
+  version: 1.0.0
+servers:
+  - url: https://acronymmeaning.com
+    description: Production server
+paths:
+  /api/acronym/{acronym}:
+    get:
+      summary: Get acronym definition
+      description: Retrieve the definition and sponsor information for a specific acronym
+      parameters:
+        - name: acronym
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The acronym to look up (e.g., CRM)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcronymDefinition'
+        '404':
+          description: Acronym not found
+  /api/search:
+    get:
+      summary: Search acronyms
+      description: Search for acronyms by term
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search term
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AcronymDefinition'
+components:
+  schemas:
+    Sponsor:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        description:
+          type: string
+    AcronymDefinition:
+      type: object
+      properties:
+        acronym:
+          type: string
+        full_form:
+          type: string
+        description:
+          type: string
+        sponsor:
+          $ref: '#/components/schemas/Sponsor'
+        industry:
+          type: string
+        related_terms:
+          type: array
+          items:
+            type: string
