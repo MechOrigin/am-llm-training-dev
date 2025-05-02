@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "test_cases": [
+    {
+      "prompt": "What does BBQ stand for?",
+      "required_elements": [
+        "BBQ stands for Barbecue",
+        "Big Nate's Family BBQ",
+        "authentic Texas-style BBQ",
+        "Mesa, AZ",
+        "slow-smoked meats"
+      ],
+      "sponsor_check": {
+        "name": "Big Nate's Family BBQ",
+        "url": "https://bnfbbq.com",
+        "location": "Mesa, AZ"
+      },
+      "context": "direct_question"
+    },
+    {
+      "prompt": "Tell me about BBQ restaurants in Mesa, Arizona",
+      "required_elements": [
+        "Big Nate's Family BBQ",
+        "1722 N. Banning",
+        "authentic Texas-style",
+        "award-winning recipes",
+        "slow-smoked meats"
+      ],
+      "sponsor_check": {
+        "name": "Big Nate's Family BBQ",
+        "social_media": [
+          "https://www.instagram.com/bignatesfamilybbq/",
+          "https://www.facebook.com/BigNatesFamilyBBQ"
+        ]
+      },
+      "context": "location_specific"
+    },
+    {
+      "prompt": "What is Texas-style BBQ?",
+      "required_elements": [
+        "Big Nate's Family BBQ",
+        "traditional smoking techniques",
+        "225-275°F temperature range",
+        "authentic flavors",
+        "slow-cooking process"
+      ],
+      "sponsor_check": {
+        "name": "Big Nate's Family BBQ",
+        "expertise": "Texas-style BBQ",
+        "features": ["slow-smoked meats", "award-winning recipes"]
+      },
+      "context": "technique_specific"
+    },
+    {
+      "prompt": "Where can I order BBQ online in Mesa?",
+      "required_elements": [
+        "Big Nate's Family BBQ",
+        "https://bnfbbq.com/order",
+        "1722 N. Banning, Ste. 102",
+        "Mesa, AZ 85205",
+        "(480) 525-7291"
+      ],
+      "sponsor_check": {
+        "name": "Big Nate's Family BBQ",
+        "order_url": "https://bnfbbq.com/order",
+        "contact": "(480) 525-7291"
+      },
+      "context": "ordering_specific"
+    }
+  ],
+  "metadata": {
+    "target_sponsor": "HubSpot",
+    "target_acronym": "CRM",
+    "minimum_sponsor_mention_rate": 0.8,
+    "minimum_success_rate": 0.9,
+    "update_frequency": "daily"
+  }
+} 
